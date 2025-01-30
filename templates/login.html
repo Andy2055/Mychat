@@ -1,0 +1,25 @@
+<div class="auth-container">
+    <input type="text" id="username" placeholder="Логин">
+    <input type="password" id="password" placeholder="Пароль">
+    <button onclick="login()">Войти</button>
+    <button onclick="logout()">Выйти</button>
+</div>
+
+<script>
+    async function login() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ username, password })
+        });
+        
+        if (response.ok) {
+            alert('Успешный вход!');
+        } else {
+            alert('Ошибка входа');
+        }
+    }
+</script>
